@@ -8,4 +8,17 @@ body {
   font-size: 14px;
   font-family: 'Noto Sans KR', sans-serif;
 }
+
+ul{
+    list-style: none;
+    padding:0; 
+    margin:0
+}
+
+button{
+  background: none;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
 `;

@@ -21,13 +21,15 @@ const Main = () =>  {
       <GlobalStyle />
       <Nav />
       <SearchBar JsonData={JsonData} />
+      <SortTab/>
+      <CategoryTab/>
     </Container>
   );
 };
 
 const Container = styled.div`
 
-  width: 60vw;
+  /* width: 60vw; */
   margin:auto;
   
   @media all and (max-width: 768px) {
