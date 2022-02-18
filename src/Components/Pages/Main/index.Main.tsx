@@ -21,8 +21,6 @@ const Main = () =>  {
       <GlobalStyle />
       <Nav />
       <SearchBar JsonData={JsonData} />
-      <SortTab/>
-      <CategoryTab/>
     </Container>
   );
 };
