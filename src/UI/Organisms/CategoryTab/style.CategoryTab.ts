@@ -12,4 +12,8 @@ margin: 20px 0;
     width: 0;
     padding:0;
   }
+
+  @media all and (max-width: 768px) {
+    background: none;
+  }
 `
