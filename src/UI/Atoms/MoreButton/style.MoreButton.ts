@@ -16,7 +16,10 @@ export const MoreButtonContainer = styled.button<MoreButtonStyleType>`
   font-size: 16px;
   box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  pointer-events: ${(props) => (props.count === props.limit ? "none" : "auto")};
+  &:disabled {
+    background-color: #f2c58a;
+    cursor: not-allowed;
+  }
   @media all and (min-width: 1023px) {
     width: 80%;
     max-width: 540px;
