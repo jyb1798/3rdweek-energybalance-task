@@ -31,15 +31,17 @@ const SearchResult = ({
   useEffect(() => {
     let newState = [...JsonData];
 
-    // 선택한 카테고리에 맞게 정렬
-    if (selectedCategory !== C.Category.all)
-      newState = newState.filter((el) => el.ingredient === selectedCategory);
-
     // 입력한 검색어에 맞게 필터링
-    if (searchInput.trim().length !== 0)
-      newState = newState.filter(
-        (el) => el.productName.indexOf(searchInput) !== -1
-      );
+    newState =
+      searchInput.trim().length !== 0
+        ? newState.filter((el) => el.productName.indexOf(searchInput) !== -1)
+        : newState;
+
+    // 선택한 카테고리에 맞게 정렬
+    newState =
+      selectedCategory !== C.Category.all
+        ? newState.filter((el) => el.ingredient === selectedCategory)
+        : newState;
 
     // 선택한 정렬방식에 맞게 정렬
     newState =
@@ -50,7 +52,7 @@ const SearchResult = ({
         : newState.sort((a, b) => a.price - b.price);
 
     setFilteredData(newState);
-  }, [searchInput, selectedCategory, selectedCategory, JsonData, selectedSort]);
+  }, [JsonData, selectedCategory, searchInput, selectedSort]);
 
   return (
     <>
