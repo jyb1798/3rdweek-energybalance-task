@@ -19,7 +19,7 @@ const SortTab = ({
 }: SortTabProps): JSX.Element => {
 
   return (
-    <S.OrderCategoryLists>
+    <S.Container>
       <TabList
         tabs={sortMenu}
         selectedSort={selectedSort}
@@ -28,7 +28,7 @@ const SortTab = ({
         setSelectedCategory={setSelectedCategory}
         component={"sort"}
       />
-    </S.OrderCategoryLists>
+    </S.Container>
   );
 };
 
