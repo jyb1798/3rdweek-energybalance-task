@@ -27,7 +27,11 @@ const Main = () => {
         searchInput={searchInput}
         setSearchInput={setSearchInput}
       />
-      <SearchResult JsonData={JsonData} searchInput={searchInput}/>
+      <SearchResult
+        JsonData={JsonData}
+        searchInput={searchInput}
+        setSearchInput={setSearchInput}
+      />
     </S.Container>
   );
 };
