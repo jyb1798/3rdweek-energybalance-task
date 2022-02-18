@@ -8,3 +8,5 @@ export interface JsonDataType {
     searchAmount: number,
     url: string,
 } 
+
+export type Onclickhandler = (setSearchInput: React.Dispatch<React.SetStateAction<string>>, inputState: string) => void
