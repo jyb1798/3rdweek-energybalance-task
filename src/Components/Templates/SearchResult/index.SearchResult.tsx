@@ -42,16 +42,6 @@ const SearchResult = ({
 
   },[searchInput,selectedCategory,selectedCategory,JsonData,selectedSort]);
 
-  useEffect(() => {
-    const newState = [...filteredData];
-    selectedSort === C.sortMenu.highPopularity
-      ? newState.sort((a, b) => b.searchAmount - a.searchAmount)
-      : selectedSort === C.sortMenu.highPrice
-      ? newState.sort((a, b) => b.price - a.price)
-      : newState.sort((a, b) => a.price - b.price);
-    setFilteredData(newState);
-  }, [selectedSort]);
-
   return (
     <>
       <CategoryTab
