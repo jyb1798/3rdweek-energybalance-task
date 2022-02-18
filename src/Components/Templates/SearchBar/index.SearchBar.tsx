@@ -41,7 +41,7 @@ const SearchBar = ({JsonData, searchInput, setSearchInput}:SearchBarProps):JSX.E
     return(<>
         <S.SearchBox>
             <S.Form onSubmit={e=> e.preventDefault()}>
-                <SearchInput inputState={inputState} setInputState={setInputState}/>
+                <SearchInput inputState={inputState} setInputState={setInputState} submitHandler = {() => handleButtonOnclick(setSearchInput, inputState)}/>
                 <SearchButton onClickHandler={()=>handleButtonOnclick(setSearchInput, inputState)}/>
             </S.Form>
             {inputState.length > 0 && !(hintArray.length === 1 && hintArray[0].productName === inputState)? 

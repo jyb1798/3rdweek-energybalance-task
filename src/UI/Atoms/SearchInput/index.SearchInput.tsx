@@ -4,11 +4,22 @@ import styled from "styled-components"
 interface SearchInputProps{
     inputState: string,
     setInputState: React.Dispatch<React.SetStateAction<string>>,
+    submitHandler: () => void,
 }
 
-const SearchInput = ({inputState, setInputState}:SearchInputProps):JSX.Element => {
+const handleKeyPress = (e:React.KeyboardEvent<HTMLInputElement>, submitHandler:()=>void) => {
+    if (e.key === 'Enter'){
+        submitHandler();
+    }
+}
+
+const SearchInput = ({inputState, setInputState, submitHandler}:SearchInputProps):JSX.Element => {
     return(
-        <Input value={inputState} onChange={(e: { target: { value: React.SetStateAction<string> } })=> setInputState(e.target.value)}/>
+        <Input 
+            value = {inputState} 
+            onChange = {(e: { target: { value: React.SetStateAction<string> } })=> setInputState(e.target.value)}
+            onKeyPress = {(e)=> {handleKeyPress(e, submitHandler)}}    
+        />
     )
 }
 
