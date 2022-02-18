@@ -16,10 +16,10 @@ const SearchHint = ({dataList, setSearchInput}: SearchHintProps):JSX.Element => 
     )
 }
 
-
+//768px
 const Warpper = styled.div`
     width: 60vw;
-    position: fixed;
+    position: absolute;
     transform: translateY(35px);
     background-color: #FFFFFF;
     border-radius: 0px 0px 4px 4px;
