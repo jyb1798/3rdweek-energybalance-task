@@ -7,6 +7,7 @@ import { JsonDataType } from "Types/index";
 
 const Main = () => {
   const [JsonData, setJsonData] = useState<JsonDataType[]>([]);
+  const [searchInput , setSearchInput] = useState<string>('');
   useEffect(() => {
     (async () => {
       await fetch("http://localhost:4000/results")
@@ -18,7 +19,7 @@ const Main = () => {
     <Container>
       <GlobalStyle />
       <Nav />
-      <SearchBar JsonData={JsonData} />
+      <SearchBar JsonData={JsonData} searchInput = {searchInput} setSearchInput = {setSearchInput} />
     </Container>
   );
 };
