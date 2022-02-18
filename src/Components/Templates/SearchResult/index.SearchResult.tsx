@@ -11,7 +11,7 @@ const SearchResult = ({ JsonData }: SearchBarProps): JSX.Element => {
   const [moreButtonCount, setMoreButtonCount] = useState<number>(1);
   return (
     <>
-      {JsonData.length > 1 ? (
+      {JsonData.length > 0 ? (
         <S.SearchResultDiv>
           <S.ContainerWrapper>
             <>
@@ -22,7 +22,7 @@ const SearchResult = ({ JsonData }: SearchBarProps): JSX.Element => {
             </>
           </S.ContainerWrapper>
           <MoreButton
-            dataLength={JsonData.length}
+            JsonData={JsonData}
             moreButtonCount={moreButtonCount}
             setMoreButtonCount={setMoreButtonCount}
           />

@@ -60,7 +60,7 @@ const Main = () => {
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
       />
-      <SearchResult JsonData={JsonData} />
+      <SearchResult JsonData={filteredData} />
     </S.Container>
   );
 };

@@ -55,6 +55,7 @@ const CategoryTab = ({
   };
 
   return (
+    <S.OverFlowContainer>
       <S.Container
         onMouseDown={onDragStart}
         onMouseUp={onDragEnd}
@@ -71,6 +72,7 @@ const CategoryTab = ({
           component={"category"}
         />
       </S.Container>
+    </S.OverFlowContainer>
   );
 };
 

@@ -15,6 +15,14 @@ export const Container = styled.div`
 
   @media all and (max-width: 768px) {
     background: none;
-    padding: 16px 28px;
+    padding: 16px 0;
+  }
+`;
+
+export const OverFlowContainer = styled.div`
+  @media all and (max-width: 768px) {
+    overflow: hidden;
+    margin: auto;
+    max-width: 90%;
   }
 `;
