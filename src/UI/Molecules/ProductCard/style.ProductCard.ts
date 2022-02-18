@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { SCREEN_MD_MIN } from "Const/index";
 export const ProductCardDiv = styled.div`
   display: flex;
   flex: 0 0 100%;
@@ -10,7 +10,7 @@ export const ProductCardDiv = styled.div`
   background-color: #ffffff;
   margin-bottom: 14px;
   box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.1);
-  @media all and (min-width: 769px) {
+  @media all and (min-width: ${SCREEN_MD_MIN}px) {
     height: 411px;
     flex-direction: column;
   }
@@ -19,7 +19,7 @@ export const ProductImg = styled.img`
   height: 135px;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
-  @media all and (min-width: 769px) {
+  @media all and (min-width: ${SCREEN_MD_MIN}px) {
     height: 255px;
     max-width: 100%;
     border-bottom-left-radius: 0%;
@@ -35,7 +35,7 @@ export const ProductInfo = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  @media all and (min-width: 769px) {
+  @media all and (min-width: ${SCREEN_MD_MIN}px) {
     padding: 19px 22px 0px 14px;
     height: 156px;
     max-width: 285px;
@@ -46,7 +46,7 @@ export const ProductName = styled.span`
   width: 80%;
   font-size: 15px;
   position: absolute;
-  @media all and (min-width: 769px) {
+  @media all and (min-width: ${SCREEN_MD_MIN}px) {
     font-weight: 700;
   }
 `;
@@ -55,7 +55,7 @@ export const ProductBrand = styled.span`
   color: #555555;
   position: absolute;
   top: 67px;
-  @media all and (min-width: 769px) {
+  @media all and (min-width: ${SCREEN_MD_MIN}px) {
     top: 73px;
   }
 `;
@@ -64,7 +64,7 @@ export const ProductPrice = styled.span`
   color: #555555;
   position: absolute;
   top: 100px;
-  @media all and (min-width: 769px) {
+  @media all and (min-width: ${SCREEN_MD_MIN}px) {
     top: 108px;
   }
 `;

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { SCREEN_MD_MAX, SCREEN_LG_MIN } from "Const/index";
 interface MoreButtonStyleType {
   count: number;
   limit: number;
@@ -20,13 +20,13 @@ export const MoreButtonContainer = styled.button<MoreButtonStyleType>`
     background-color: #f2c58a;
     cursor: not-allowed;
   }
-  @media all and (min-width: 1023px) {
+  @media all and (min-width: ${SCREEN_LG_MIN}px) {
     width: 80%;
     max-width: 540px;
     margin: 30px auto;
   }
 
-  @media all and (max-width: 768px) {
+  @media all and (max-width: ${SCREEN_MD_MAX}px) {
     width: 95%;
     margin: auto;
     margin-bottom: 20px;
