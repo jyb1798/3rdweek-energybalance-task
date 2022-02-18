@@ -1,5 +1,6 @@
 import MoreButton from "Atoms/MoreButton/index.MoreButton";
 import ProductContainer from "Organisms/ProductContainer/index.ProductContainer";
+import RecommendWords from "./recommendWords";
 import * as S from "Templates/SearchResult/style.SeacthResult";
 import { JsonDataType } from "Types/index";
 import React, { useState } from "react";
@@ -28,7 +29,7 @@ const SearchResult = ({ JsonData }: SearchBarProps): JSX.Element => {
           />
         </S.SearchResultDiv>
       ) : (
-        <div>로딩중</div>
+        <RecommendWords />
       )}
     </>
   );
