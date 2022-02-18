@@ -1,6 +1,6 @@
 import MoreButton from "Atoms/MoreButton/index.MoreButton";
 import ProductContainer from "Organisms/ProductContainer/index.ProductContainer";
-import RecommendWords from "../../../UI/Organisms/RecommendWord/index.RecommendWords";
+import RecommendWords from "Organisms/RecommendWord/index.RecommendWords";
 import * as S from "Templates/SearchResult/style.SeacthResult";
 import * as T from "Types/index";
 import * as C from "Const/index";
@@ -29,18 +29,25 @@ const SearchResult = ({
   const [filteredData, setFilteredData] = useState<T.JsonDataType[]>([]);
 
   useEffect(() => {
-    let newState = [
-      ...JsonData.filter((el) => el.productName.indexOf(searchInput) !== -1),
-    ];
+    let newState = [...JsonData];
 
+    // 선택한 카테고리에 맞게 정렬
     if (selectedCategory !== C.Category.all)
       newState = newState.filter((el) => el.ingredient === selectedCategory);
 
-    selectedSort === C.sortMenu.highPopularity
-      ? newState.sort((a, b) => b.searchAmount - a.searchAmount)
-      : selectedSort === C.sortMenu.highPrice
-      ? newState.sort((a, b) => b.price - a.price)
-      : newState.sort((a, b) => a.price - b.price);
+    // 입력한 검색어에 맞게 필터링
+    if (searchInput.trim().length !== 0)
+      newState = newState.filter(
+        (el) => el.productName.indexOf(searchInput) !== -1
+      );
+
+    // 선택한 정렬방식에 맞게 정렬
+    newState =
+      selectedSort === C.sortMenu.highPopularity
+        ? newState.sort((a, b) => b.searchAmount - a.searchAmount)
+        : selectedSort === C.sortMenu.highPrice
+        ? newState.sort((a, b) => b.price - a.price)
+        : newState.sort((a, b) => a.price - b.price);
 
     setFilteredData(newState);
   }, [searchInput, selectedCategory, selectedCategory, JsonData, selectedSort]);
