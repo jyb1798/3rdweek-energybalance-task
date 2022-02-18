@@ -31,11 +31,16 @@ const Main = () => {
   }, [selectedCategory, JsonData]);
 
   useEffect(() => {
+
+    const newState= [...filteredData]
+
+
     selectedSort === "인기순"
-      ? filteredData.sort((a, b) => b.searchAmount - a.searchAmount)
-      : "높은 가격순"
-      ? filteredData.sort((a, b) => b.price - a.price)
-      : filteredData.sort((a, b) => a.price - b.price);
+      ? newState.sort((a, b) => b.searchAmount - a.searchAmount)
+      : selectedSort === "높은 가격순"
+      ? newState.sort((a, b) => b.price - a.price)
+      : newState.sort((a, b) => a.price - b.price)
+      setFilteredData(newState)
   }, [selectedSort]);
 
   return (
