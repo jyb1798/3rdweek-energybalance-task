@@ -51,7 +51,7 @@ const SearchResult = ({
     selectedCategory === C.Category.all
       ? setFilteredData(newState)
       : setFilteredData(newState.filter((el) => el.ingredient === selectedCategory));
-  },[searchInput]);
+  },[searchInput,selectedCategory]);
 
   return (
     <>
