@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import * as S from "Atoms/TabItem/style.TabItem";
 
 interface TabItemProps {
@@ -14,7 +14,7 @@ const TabItem = ({
   handleSelected,
   component,
   selectedCategory,
-  selectedSort
+  selectedSort,
 }: TabItemProps): JSX.Element => {
   return (
     <S.Li
@@ -22,11 +22,16 @@ const TabItem = ({
         handleSelected(component, item);
       }}
     >
-      <S.Button itemName={item} selectedCategory={selectedCategory} selectedSort={selectedSort}>
+      <S.Button
+        itemName={item}
+        selectedCategory={selectedCategory}
+        selectedSort={selectedSort}
+        component={component}
+      >
         {item}
       </S.Button>
     </S.Li>
   );
 };
 
-export default TabItem;
+export default memo(TabItem);
