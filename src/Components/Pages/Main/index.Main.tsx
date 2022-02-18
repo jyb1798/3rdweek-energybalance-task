@@ -11,6 +11,7 @@ const Main = () =>  {
   const [JsonData, setJsonData] = useState<T.JsonDataType[]>([]);
   const [searchInput , setSearchInput] = useState<string>('');
   const [selectedCategory, setSelectedCategory] = useState<string>('전체');
+  const [selectedSort,setSelectedSort] = useState<string>('인기순');
   useEffect(() => {
     (async () => {
       await fetch("http://localhost:4000/results")
@@ -18,14 +19,15 @@ const Main = () =>  {
         .then((res) => setJsonData(res));
     })();
   }, []);
+
   return (
     <Container>
       <GlobalStyle />
       <Nav />
       <SearchBar JsonData={JsonData} searchInput = {searchInput} setSearchInput = {setSearchInput} />
-      <SortTab/>
-      <CategoryTab selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}/>
-      <SortTab/>
+      <SortTab selectedSort={selectedSort} setSelectedSort={setSelectedSort} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}/>
+      <CategoryTab selectedSort={selectedSort} setSelectedSort={setSelectedSort} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}/>
+      <SortTab selectedSort={selectedSort} setSelectedSort={setSelectedSort} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}/>
     </Container>
   );
 };
