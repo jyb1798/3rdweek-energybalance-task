@@ -24,6 +24,7 @@ const Main = () =>  {
       <SearchBar JsonData={JsonData} searchInput = {searchInput} setSearchInput = {setSearchInput} />
       <SortTab/>
       <CategoryTab/>
+      <SortTab/>
     </Container>
   );
 };
