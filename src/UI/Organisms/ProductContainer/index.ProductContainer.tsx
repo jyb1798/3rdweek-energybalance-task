@@ -4,21 +4,21 @@ import * as S from "Organisms/ProductContainer/style.ProductContainer";
 import ProductCard from "Molecules/ProductCard/index.ProductCard";
 
 type ProductContainerProps = {
-  filterdData: JsonDataType[];
+  filteredData: JsonDataType[];
   moreButtonCount: number;
 };
 const ProductContainer = ({
-  filterdData,
+  filteredData,
   moreButtonCount,
 }: ProductContainerProps): JSX.Element => {
   const [ProductList, setProductList] = useState<JsonDataType[]>();
   const [tmpFilterdData, setTmpFilterdData] = useState<JsonDataType[]>([
-    ...filterdData,
+    ...filteredData,
   ]);
 
   useEffect(() => {
     if (moreButtonCount === 1) {
-      const newState = [...filterdData.slice(0, 4)];
+      const newState = [...filteredData.slice(0, 4)];
       setProductList(newState);
       setTmpFilterdData([...tmpFilterdData]);
       return;
@@ -35,9 +35,9 @@ const ProductContainer = ({
   }, [moreButtonCount]);
 
   useEffect(() => {
-    setProductList([...filterdData.slice(0, 4)]);
-    setTmpFilterdData([...filterdData]);
-  }, [filterdData]);
+    setProductList([...filteredData.slice(0, 4)]);
+    setTmpFilterdData([...filteredData]);
+  }, [filteredData]);
 
   return (
     <>

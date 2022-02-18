@@ -60,13 +60,13 @@ const SearchResult = ({ JsonData }: SearchBarProps): JSX.Element => {
           <S.ContainerWrapper>
             <>
               <ProductContainer
-                filterdData={filteredData}
+                filteredData={filteredData}
                 moreButtonCount={moreButtonCount}
               />
             </>
           </S.ContainerWrapper>
           <MoreButton
-            filterdData={filteredData}
+            filteredData={filteredData}
             moreButtonCount={moreButtonCount}
             setMoreButtonCount={setMoreButtonCount}
           />
