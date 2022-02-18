@@ -18,6 +18,7 @@ const MoreButton = ({
   }, [filteredData]);
   return (
     <S.MoreButtonContainer
+      disabled={moreButtonCount === Math.ceil(filteredData.length / 4)}
       count={moreButtonCount}
       limit={Math.ceil(filteredData.length / 4)}
       onClick={() =>
