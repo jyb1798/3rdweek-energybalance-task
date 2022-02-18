@@ -1,6 +1,6 @@
 import MoreButton from "Atoms/MoreButton/index.MoreButton";
 import ProductContainer from "Organisms/ProductContainer/index.ProductContainer";
-import RecommendWords from "./recommendWords";
+import RecommendWords from "Organisms/RecommendWord/index.RecommendWords";
 import * as S from "Templates/SearchResult/style.SeacthResult";
 import * as T from "Types/index";
 import * as C from "Const/index";
@@ -11,11 +11,13 @@ import SortTab from "Organisms/SortTab/index.SortTab";
 type SearchBarProps = {
   JsonData: T.JsonDataType[];
   searchInput: string;
+  setSearchInput: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const SearchResult = ({
   JsonData,
   searchInput,
+  setSearchInput,
 }: SearchBarProps): JSX.Element => {
   const [moreButtonCount, setMoreButtonCount] = useState<number>(1);
   const [selectedCategory, setSelectedCategory] = useState<string>(
@@ -82,7 +84,11 @@ const SearchResult = ({
           />
         </S.SearchResultDiv>
       ) : (
-        <RecommendWords searchInput={searchInput} JsonData={JsonData} />
+        <RecommendWords
+          searchInput={searchInput}
+          JsonData={JsonData}
+          setSearchInput={setSearchInput}
+        />
       )}
     </>
   );
