@@ -7,7 +7,7 @@ const HintList = ({dataList}: {dataList: JsonDataType[]}):JSX.Element => {
     return(
         <UL>
             {dataList.map((ele, index) => 
-                <SearchHintUnit data= {ele} key={index}/>
+                <SearchHintUnit data= {ele} key={index}/> 
             )}
         </UL>
     )

@@ -5,6 +5,7 @@ interface SearchInputProps{
     inputState: string,
     setInputState: React.Dispatch<React.SetStateAction<string>>,
     submitHandler: () => void,
+    setInputFocus: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const handleKeyPress = (e:React.KeyboardEvent<HTMLInputElement>, submitHandler:()=>void) => {
@@ -13,12 +14,14 @@ const handleKeyPress = (e:React.KeyboardEvent<HTMLInputElement>, submitHandler:(
     }
 }
 
-const SearchInput = ({inputState, setInputState, submitHandler}:SearchInputProps):JSX.Element => {
+const SearchInput = ({inputState, setInputState, submitHandler, setInputFocus}:SearchInputProps):JSX.Element => {
     return(
         <Input 
             value = {inputState} 
             onChange = {(e: { target: { value: React.SetStateAction<string> } })=> setInputState(e.target.value)}
             onKeyPress = {(e)=> {handleKeyPress(e, submitHandler)}}    
+            onFocus = {() => setInputFocus(true)}
+            onBlur = {() => setInputFocus(false)}
         />
     )
 }
