@@ -43,9 +43,6 @@ const SearchBar = ({JsonData, searchInput, setSearchInput}:SearchBarProps):JSX.E
         setInputState(searchInput);
     }, [searchInput])
 
-    console.log(searchInput);
-    console.log(inputState);
-    console.log(hintArray);
     return(<>
         <S.SearchBox>
             <S.Form onSubmit={e=> e.preventDefault()}>

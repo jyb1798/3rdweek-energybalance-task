@@ -74,7 +74,10 @@ const SearchResult = ({
           />
         </S.SearchResultDiv>
       ) : (
-        <RecommendWords />
+        <RecommendWords 
+          searchInput = {searchInput} 
+          JsonData={JsonData}
+        />
       )}
     </>
   );
