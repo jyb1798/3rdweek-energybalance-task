@@ -21,7 +21,9 @@ const handleButtonOnclick:T.Onclickhandler = (setSearchInput, inputState) =>{
 const SearchBar = ({JsonData, searchInput, setSearchInput}:SearchBarProps):JSX.Element => {
     const [inputState, setInputState] = useState<string>('');
     const [hintArray, setHintArray] = useState<T.JsonDataType[]>([]);
+    const [inputFocus, setInputFocus] = useState<boolean>(false);
     var timer:null| NodeJS.Timeout = null
+
     useEffect(()=> {
         if(!timer){
         timer =
@@ -35,17 +37,28 @@ const SearchBar = ({JsonData, searchInput, setSearchInput}:SearchBarProps):JSX.E
             setHintArray(temp.slice(0, 5));
             timer = null;
         }, 300);}
-    }, [inputState])
+    }, [inputState]);
+
+    useEffect(()=>{
+        setInputState(searchInput);
+    }, [searchInput])
+
     console.log(searchInput);
+    console.log(inputState);
     console.log(hintArray);
     return(<>
         <S.SearchBox>
             <S.Form onSubmit={e=> e.preventDefault()}>
-                <SearchInput inputState={inputState} setInputState={setInputState}/>
+                <SearchInput 
+                    inputState={inputState} 
+                    setInputState={setInputState} 
+                    submitHandler = {() => handleButtonOnclick(setSearchInput, inputState)}
+                    setInputFocus = {setInputFocus}    
+                />
                 <SearchButton onClickHandler={()=>handleButtonOnclick(setSearchInput, inputState)}/>
             </S.Form>
-            {inputState.length > 0 && !(hintArray.length === 1 && hintArray[0].productName === inputState)? 
-                <SearchHint dataList={hintArray}/>:<></>
+            {inputFocus && inputState.length > 0 && !(hintArray.length === 1 && hintArray[0].productName === inputState)? 
+                <SearchHint dataList={hintArray} setSearchInput={setSearchInput}/>:<></>
             }
         </S.SearchBox>
     </>);
