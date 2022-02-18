@@ -6,6 +6,7 @@ import { GlobalStyle } from "Style/style";
 import * as T from "Types/index";
 import SortTab from "Organisms/SortTab/index.SortTab";
 import CategoryTab from "Organisms/CategoryTab/index.CategoryTab";
+import SearchResult from "Components/Templates/SearchResult/index.SearchResult";
 
 const Main = () => {
   const [JsonData, setJsonData] = useState<T.JsonDataType[]>([]);
@@ -17,7 +18,7 @@ const Main = () => {
     (async () => {
       await fetch("http://localhost:4000/results")
         .then((res) => res.json())
-        .then((res) => setJsonData(res))
+        .then((res) => setJsonData(res));
     })();
   }, []);
 
@@ -27,7 +28,7 @@ const Main = () => {
       : setFilteredData([
           ...JsonData.filter((el) => el.ingredient === selectedCategory),
         ]);
-  }, [selectedCategory,JsonData]);
+  }, [selectedCategory, JsonData]);
 
   useEffect(() => {
     selectedSort === "인기순"
@@ -59,6 +60,7 @@ const Main = () => {
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
       />
+      <SearchResult JsonData={JsonData} />
     </Container>
   );
 };
