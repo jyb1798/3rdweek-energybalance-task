@@ -4,8 +4,10 @@ import SearchBar from "Templates/SearchBar/index.SearchBar";
 import styled from "styled-components";
 import { GlobalStyle } from "Style/style";
 import { JsonDataType } from "Types/index";
+import SortTab from "Organisms/SortTab/index.SortTab";
+import CategoryTab from "Organisms/CategoryTab/index.CategoryTab";
 
-const Main = () => {
+const Main = () =>  {
   const [JsonData, setJsonData] = useState<JsonDataType[]>([]);
   useEffect(() => {
     (async () => {
@@ -19,6 +21,8 @@ const Main = () => {
       <GlobalStyle />
       <Nav />
       <SearchBar JsonData={JsonData} />
+      <SortTab/>
+      <CategoryTab/>
     </Container>
   );
 };
