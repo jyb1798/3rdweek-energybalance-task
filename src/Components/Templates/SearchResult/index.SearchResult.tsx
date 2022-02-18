@@ -6,24 +6,24 @@ import { JsonDataType } from "Types/index";
 import React, { useState } from "react";
 
 type SearchBarProps = {
-  JsonData: JsonDataType[];
+  filterdData: JsonDataType[];
 };
-const SearchResult = ({ JsonData }: SearchBarProps): JSX.Element => {
+const SearchResult = ({ filterdData }: SearchBarProps): JSX.Element => {
   const [moreButtonCount, setMoreButtonCount] = useState<number>(1);
   return (
     <>
-      {JsonData.length > 0 ? (
+      {filterdData.length > 0 ? (
         <S.SearchResultDiv>
           <S.ContainerWrapper>
             <>
               <ProductContainer
-                JsonData={JsonData}
+                filterdData={filterdData}
                 moreButtonCount={moreButtonCount}
               />
             </>
           </S.ContainerWrapper>
           <MoreButton
-            JsonData={JsonData}
+            filterdData={filterdData}
             moreButtonCount={moreButtonCount}
             setMoreButtonCount={setMoreButtonCount}
           />
