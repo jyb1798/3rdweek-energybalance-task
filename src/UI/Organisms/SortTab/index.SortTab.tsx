@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import * as S from "./style.SortTab";
 import TabList from "Molecules/TabList/index.TabList";
 
@@ -17,15 +17,6 @@ const SortTab = ({
   selectedCategory,
   setSelectedCategory
 }: SortTabProps): JSX.Element => {
-  const [currentSort, setCurrentSort] = useState("id");
-
-  // const checkActive = (sort) => {
-  //   return sort === currentSort;
-  // };
-
-  // const moveToNewSort = event => {
-  //   setCurrentSort();
-  // };
 
   return (
     <S.OrderCategoryLists>
