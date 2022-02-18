@@ -31,6 +31,9 @@ const Input = styled.input`
     border: none;
     border-radius: 4px;
     box-shadow: inset -2px 0px 4px rgba(0,0,0, 0.25);
+    &:focus{
+        outline: none;
+    }
 `
 
 export default SearchInput;

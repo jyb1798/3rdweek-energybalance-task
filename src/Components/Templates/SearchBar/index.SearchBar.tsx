@@ -23,6 +23,7 @@ const SearchBar = ({JsonData, searchInput, setSearchInput}:SearchBarProps):JSX.E
     const [hintArray, setHintArray] = useState<T.JsonDataType[]>([]);
     const [inputFocus, setInputFocus] = useState<boolean>(false);
     var timer:null| NodeJS.Timeout = null
+
     useEffect(()=> {
         if(!timer){
         timer =
@@ -36,8 +37,14 @@ const SearchBar = ({JsonData, searchInput, setSearchInput}:SearchBarProps):JSX.E
             setHintArray(temp.slice(0, 5));
             timer = null;
         }, 300);}
-    }, [inputState])
+    }, [inputState]);
+
+    useEffect(()=>{
+        setInputState(searchInput);
+    }, [searchInput])
+
     console.log(searchInput);
+    console.log(inputState);
     console.log(hintArray);
     return(<>
         <S.SearchBox>
@@ -51,7 +58,7 @@ const SearchBar = ({JsonData, searchInput, setSearchInput}:SearchBarProps):JSX.E
                 <SearchButton onClickHandler={()=>handleButtonOnclick(setSearchInput, inputState)}/>
             </S.Form>
             {inputFocus && inputState.length > 0 && !(hintArray.length === 1 && hintArray[0].productName === inputState)? 
-                <SearchHint dataList={hintArray}/>:<></>
+                <SearchHint dataList={hintArray} setSearchInput={setSearchInput}/>:<></>
             }
         </S.SearchBox>
     </>);
