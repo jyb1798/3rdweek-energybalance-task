@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import * as S from "Organisms/CategoryTab/style.CategoryTab"
 import TabList from "Molecules/TabList/index.TabList";
 import mockData from "./mockData"
 
@@ -22,9 +23,9 @@ const CategoryTab = () => {
   },[])
 
   return (
-    <>
+    <S.Container>
       <TabList tabs={category as string[]}/>
-    </>
+    </S.Container>
   );
 };
 
