@@ -32,11 +32,9 @@ const Main = () => {
   useEffect(() => {
     selectedSort === "인기순"
       ? filteredData.sort((a, b) => b.searchAmount - a.searchAmount)
-      : "낮은 가격순"
-      ? filteredData.sort((a, b) => a.price - b.price)
-      : filteredData.sort((a, b) => b.price - a.price);
-
-      console.log(filteredData)
+      : "높은 가격순"
+      ? filteredData.sort((a, b) => b.price - a.price)
+      : filteredData.sort((a, b) => a.price - b.price);
   }, [selectedSort]);
 
   return (
