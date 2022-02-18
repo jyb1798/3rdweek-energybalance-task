@@ -25,7 +25,7 @@ const Main = () =>  {
       <GlobalStyle />
       <Nav />
       <SearchBar JsonData={JsonData} searchInput = {searchInput} setSearchInput = {setSearchInput} />
-      <CategoryTab selectedSort={selectedSort} setSelectedSort={setSelectedSort} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}/>
+      <CategoryTab JsonData={JsonData} selectedSort={selectedSort} setSelectedSort={setSelectedSort} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}/>
       <SortTab selectedSort={selectedSort} setSelectedSort={setSelectedSort} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}/>
     </Container>
   );

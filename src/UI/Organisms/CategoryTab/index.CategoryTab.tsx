@@ -2,38 +2,38 @@ import React, { useEffect, useState, useRef, forwardRef } from "react";
 import * as S from "Organisms/CategoryTab/style.CategoryTab";
 import * as T from "Types/index";
 import TabList from "Molecules/TabList/index.TabList";
-import mockData from "./mockData";
 
 interface CategoryTabProps {
+  JsonData: T.JsonDataType[];
   selectedCategory: string;
   setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
   selectedSort: string;
   setSelectedSort: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const HandleCategoryMenu = () => {
-  const set = new Set();
-
-  set.add("전체");
-
-  mockData.results.map((item) => {
-    item.ingredient.split(",").map((el) => set.add(el));
-  });
-
-  return set;
-};
-
 const CategoryTab = ({
   selectedCategory,
   setSelectedCategory,
   selectedSort,
   setSelectedSort,
+  JsonData
 }: CategoryTabProps) => {
   const [category, setCategory] = useState<string[]>();
 
+  const HandleCategoryMenu = () => {
+    
+    const set = new Set();
+  
+    set.add("전체");
+    JsonData.map((item) => {
+      item.ingredient.split(",").map((el) => set.add(el));
+    });
+    return set;
+  };
+
   useEffect(() => {
     setCategory(Array.from(HandleCategoryMenu()) as string[]);
-  }, []);
+  }, [JsonData]);
 
   const tabContainer = useRef<any>(null);
   const [isDrag, setIsDrag] = useState(false);
