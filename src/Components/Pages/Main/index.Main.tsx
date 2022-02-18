@@ -3,12 +3,14 @@ import Nav from "Templates/Nav/index.Nav";
 import SearchBar from "Templates/SearchBar/index.SearchBar";
 import styled from "styled-components";
 import { GlobalStyle } from "Style/style";
-import { JsonDataType } from "Types/index";
+import * as T from "Types/index";
 import SortTab from "Organisms/SortTab/index.SortTab";
 import CategoryTab from "Organisms/CategoryTab/index.CategoryTab";
 
 const Main = () =>  {
-  const [JsonData, setJsonData] = useState<JsonDataType[]>([]);
+  const [JsonData, setJsonData] = useState<T.JsonDataType[]>([]);
+  const [searchInput , setSearchInput] = useState<string>('');
+  const [selectedCategory, setSelectedCategory] = useState<string>('전체');
   useEffect(() => {
     (async () => {
       await fetch("http://localhost:4000/results")
@@ -20,8 +22,9 @@ const Main = () =>  {
     <Container>
       <GlobalStyle />
       <Nav />
-      <SearchBar JsonData={JsonData} />
-      <CategoryTab/>
+      <SearchBar JsonData={JsonData} searchInput = {searchInput} setSearchInput = {setSearchInput} />
+      <SortTab/>
+      <CategoryTab selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}/>
       <SortTab/>
     </Container>
   );
