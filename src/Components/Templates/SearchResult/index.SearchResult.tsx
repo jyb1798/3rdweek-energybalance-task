@@ -4,18 +4,22 @@ import RecommendWords from "./recommendWords";
 import * as S from "Templates/SearchResult/style.SeacthResult";
 import * as T from "Types/index";
 import React, { useEffect, useState } from "react";
-import CategoryTab from 'Organisms/CategoryTab/index.CategoryTab';
-import SortTab from 'Organisms/SortTab/index.SortTab';
+import CategoryTab from "Organisms/CategoryTab/index.CategoryTab";
+import SortTab from "Organisms/SortTab/index.SortTab";
 
 type SearchBarProps = {
   JsonData: T.JsonDataType[];
+  searchInput: string;
 };
 
-enum Category{
-  all = "전체"
+enum Category {
+  all = "전체",
 }
 
-const SearchResult = ({ JsonData }: SearchBarProps): JSX.Element => {
+const SearchResult = ({
+  JsonData,
+  searchInput,
+}: SearchBarProps): JSX.Element => {
   const [moreButtonCount, setMoreButtonCount] = useState<number>(1);
   const [selectedCategory, setSelectedCategory] = useState<string>("전체");
   const [selectedSort, setSelectedSort] = useState<string>("인기순");
@@ -30,19 +34,22 @@ const SearchResult = ({ JsonData }: SearchBarProps): JSX.Element => {
   }, [selectedCategory, JsonData]);
 
   useEffect(() => {
-
-    const newState= [...filteredData]
+    const newState = [...filteredData];
     selectedSort === T.sortMenu.highPopularity
       ? newState.sort((a, b) => b.searchAmount - a.searchAmount)
       : selectedSort === T.sortMenu.highPrice
       ? newState.sort((a, b) => b.price - a.price)
-      : newState.sort((a, b) => a.price - b.price)
-      setFilteredData(newState)
+      : newState.sort((a, b) => a.price - b.price);
+    setFilteredData(newState);
   }, [selectedSort]);
+
+  useEffect(() => {
+    setFilteredData([...filteredData.filter((el) => el.productName.indexOf(searchInput) !== -1)]);
+  }, [searchInput]);
 
   return (
     <>
-    <CategoryTab
+      <CategoryTab
         JsonData={JsonData}
         selectedSort={selectedSort}
         setSelectedSort={setSelectedSort}
