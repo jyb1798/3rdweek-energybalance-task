@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SearchButton from "Atoms/SearchButton/index.SearchButton";
 import SearchInput from "Atoms/SearchInput/index.SearchInput";
+import SearchHint from "Organisms/SearchHint/index.SearchHint";
 import * as S from "Components/Templates/SearchBar/style.SearchBar";
 import * as T from "src/Types";
 type SearchBarProps = {
@@ -20,7 +21,6 @@ const handleButtonOnclick:T.Onclickhandler = (setSearchInput, inputState) =>{
 const SearchBar = ({JsonData, searchInput, setSearchInput}:SearchBarProps):JSX.Element => {
     const [inputState, setInputState] = useState<string>('');
     const [hintArray, setHintArray] = useState<T.JsonDataType[]>([]);
-    const [throttle, setThrottle] = useState<boolean>(false);
     var timer:null| NodeJS.Timeout = null
     useEffect(()=> {
         if(!timer){
@@ -30,10 +30,10 @@ const SearchBar = ({JsonData, searchInput, setSearchInput}:SearchBarProps):JSX.E
             JsonData.forEach(ele => {
                 if(ele.productName.includes(inputState)){
                 temp.push(ele);
-                }
-            setHintArray(temp.sort((a, b) => b.searchAmount - a. searchAmount));
+                }});
+            temp.sort((a, b) => b.searchAmount - a. searchAmount);
+            setHintArray(temp.slice(0, 5));
             timer = null;
-            })
         }, 300);}
     }, [inputState])
     console.log(searchInput);
@@ -44,6 +44,9 @@ const SearchBar = ({JsonData, searchInput, setSearchInput}:SearchBarProps):JSX.E
                 <SearchInput inputState={inputState} setInputState={setInputState}/>
                 <SearchButton onClickHandler={()=>handleButtonOnclick(setSearchInput, inputState)}/>
             </S.Form>
+            {inputState.length > 0 && !(hintArray.length === 1 && hintArray[0].productName === inputState)? 
+                <SearchHint dataList={hintArray}/>:<></>
+            }
         </S.SearchBox>
     </>);
 }
