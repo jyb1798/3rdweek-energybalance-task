@@ -3,7 +3,6 @@ import * as S from "Atoms/TabItem/style.TabItem";
 
 interface TabItemProps {
   item: string;
-  index: number;
   selectedCategory: string;
   selectedSort: string;
   component: string;
@@ -12,7 +11,6 @@ interface TabItemProps {
 
 const TabItem = ({
   item,
-  index,
   handleSelected,
   component,
   selectedCategory,
@@ -20,7 +18,6 @@ const TabItem = ({
 }: TabItemProps): JSX.Element => {
   return (
     <S.Li
-      key={index}
       onClick={() => {
         handleSelected(component, item);
       }}

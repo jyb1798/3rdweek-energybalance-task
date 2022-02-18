@@ -22,7 +22,6 @@ const TabList = ({
 }: TabListProps): JSX.Element => {
 
   const handleSelected = (component:string,item:string):void => {
-    console.log(component,item)
     component === 'category' ? setSelectedCategory(item) : setSelectedSort(item);
   }
 
@@ -34,7 +33,7 @@ const TabList = ({
             item={item}
             selectedCategory={selectedCategory}
             selectedSort={selectedSort}
-            index={index}
+            key={index}
             handleSelected={handleSelected}
             component={component}
           />
