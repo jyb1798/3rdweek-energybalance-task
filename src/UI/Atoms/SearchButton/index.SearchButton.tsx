@@ -5,12 +5,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface SearchButtonProps {
     onClickHandler: () => void
+    setInputFocus: React.Dispatch<React.SetStateAction<boolean>>,
 }
 
-const SearchButton = ({onClickHandler}:SearchButtonProps):JSX.Element => {
+const SearchButton = ({onClickHandler, setInputFocus}:SearchButtonProps):JSX.Element => {
     return(
         <Warpper>
-            <Button onClick={onClickHandler}>
+            <Button onClick={() => {onClickHandler(); setInputFocus(false);}}>
             <FontAwesomeIcon icon={faMagnifyingGlass} />
             </Button>
         </Warpper>
