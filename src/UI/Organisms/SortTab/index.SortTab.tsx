@@ -1,4 +1,4 @@
-import React from "react";
+import React,{memo} from "react";
 import * as S from "./style.SortTab";
 import TabList from "Molecules/TabList/index.TabList";
 
@@ -32,4 +32,4 @@ const SortTab = ({
   );
 };
 
-export default SortTab;
+export default memo(SortTab);

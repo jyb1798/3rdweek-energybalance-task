@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, forwardRef } from "react";
+import React, { useEffect, useState, useRef, memo } from "react";
 import * as S from "Organisms/CategoryTab/style.CategoryTab";
 import * as T from "Types/index";
 import TabList from "Molecules/TabList/index.TabList";
@@ -21,7 +21,7 @@ const CategoryTab = ({
   const [category, setCategory] = useState<string[]>();
 
   const HandleCategoryMenu = () => {
-    
+
     const set = new Set();
   
     set.add("전체");
@@ -75,4 +75,4 @@ const CategoryTab = ({
   );
 };
 
-export default CategoryTab;
+export default memo(CategoryTab);
