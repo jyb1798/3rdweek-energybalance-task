@@ -27,9 +27,10 @@ const Button = styled.button`
     border-radius: 3px;
     border: none;
     color: #F39519 ;
+    font-size: 17px;
     box-shadow: 2px 3px 5px rgba(0,0,0,0.3);
     height: 100%;
-    width: 25px;
+    width: 35px;
     transform: translateY(-1px);
 
     &:active{

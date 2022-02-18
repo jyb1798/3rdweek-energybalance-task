@@ -7,5 +7,5 @@ export const SearchBox = styled.div`
 export const Form = styled.form`
     display: flex;
     flex-direction: row;
-    height: 25px;
+    height: 35px;
 `
