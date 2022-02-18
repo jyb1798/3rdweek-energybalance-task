@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef, memo } from "react";
 import * as S from "Organisms/CategoryTab/style.CategoryTab";
 import * as T from "Types/index";
+import * as C from 'Const/index'
 import TabList from "Molecules/TabList/index.TabList";
 
 interface CategoryTabProps {
@@ -23,7 +24,7 @@ const CategoryTab = ({
   const HandleCategoryMenu = () => {
     const set = new Set();
 
-    set.add("전체");
+    set.add(C.Category.all);
     JsonData.map((item) => {
       item.ingredient.split(",").map((el) => set.add(el));
     });
@@ -69,7 +70,7 @@ const CategoryTab = ({
           setSelectedSort={setSelectedSort}
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
-          component={"category"}
+          component={C.Category.category}
         />
       </S.Container>
     </S.OverFlowContainer>

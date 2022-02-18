@@ -1,6 +1,7 @@
 import React from "react";
 import TabItem from "Atoms/TabItem/index.TabItem";
 import * as S from "Molecules/TabList/style.TabList";
+import * as C from 'Const/index'
 
 interface TabListProps {
   tabs: string[];
@@ -22,7 +23,7 @@ const TabList = ({
 }: TabListProps): JSX.Element => {
 
   const handleSelected = (component:string,item:string):void => {
-    component === 'category' ? setSelectedCategory(item) : setSelectedSort(item);
+    component === C.Category.category ? setSelectedCategory(item) : setSelectedSort(item);
   }
 
   return (
