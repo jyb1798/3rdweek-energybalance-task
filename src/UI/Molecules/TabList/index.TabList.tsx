@@ -4,9 +4,9 @@ import * as S from "Molecules/TabList/style.TabList";
 
 interface TabListProps {
   tabs: string[];
-  onMouseDown(e: MouseEvent): void;
+  onMouseDown(e: MouseEvent): any;
   onMouseUp(): void;
-  onMouseMove(e: MouseEvent): void;
+  onMouseMove(e: MouseEvent): any;
   onMouseLeave(): void;
   ref: React.RefObject<HTMLUListElement>;
 }
