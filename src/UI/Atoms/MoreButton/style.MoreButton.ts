@@ -22,4 +22,10 @@ export const MoreButtonContainer = styled.button<MoreButtonStyleType>`
     max-width: 540px;
     margin: auto 0;
   }
+
+  @media all and (max-width: 768px) {
+    width: 95%;
+    margin: auto;
+    margin-bottom: 20px;
+  }
 `;
