@@ -21,8 +21,8 @@ const SearchResult = ({
   searchInput,
 }: SearchBarProps): JSX.Element => {
   const [moreButtonCount, setMoreButtonCount] = useState<number>(1);
-  const [selectedCategory, setSelectedCategory] = useState<string>("전체");
-  const [selectedSort, setSelectedSort] = useState<string>("인기순");
+  const [selectedCategory, setSelectedCategory] = useState<string>(Category.all);
+  const [selectedSort, setSelectedSort] = useState<string>(T.sortMenu.highPopularity);
   const [filteredData, setFilteredData] = useState<T.JsonDataType[]>([]);
 
   useEffect(() => {
