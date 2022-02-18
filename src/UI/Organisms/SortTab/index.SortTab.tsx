@@ -8,7 +8,7 @@ const SortTab = ():JSX.Element => {
   const [currentSort, setCurrentSort] = useState('id');
 
   
-  const checkActive = (sort): any => {
+  const checkActive = (sort) => {
     return sort === currentSort;
   };
 
