@@ -18,8 +18,12 @@ const SearchResult = ({
   searchInput,
 }: SearchBarProps): JSX.Element => {
   const [moreButtonCount, setMoreButtonCount] = useState<number>(1);
-  const [selectedCategory, setSelectedCategory] = useState<string>(C.Category.all);
-  const [selectedSort, setSelectedSort] = useState<string>(C.sortMenu.highPopularity);
+  const [selectedCategory, setSelectedCategory] = useState<string>(
+    C.Category.all
+    );
+  const [selectedSort, setSelectedSort] = useState<string>(
+    C.sortMenu.highPopularity
+  );
   const [filteredData, setFilteredData] = useState<T.JsonDataType[]>([]);
 
   useEffect(() => {
@@ -41,8 +45,13 @@ const SearchResult = ({
   }, [selectedSort]);
 
   useEffect(() => {
-    setFilteredData([...filteredData.filter((el) => el.productName.indexOf(searchInput) !== -1)]);
-  }, [searchInput]);
+    const newState = [
+      ...JsonData.filter((el) => el.productName.indexOf(searchInput) !== -1),
+    ];
+    selectedCategory === C.Category.all
+      ? setFilteredData(newState)
+      : setFilteredData(newState.filter((el) => el.ingredient === selectedCategory));
+  },[searchInput]);
 
   return (
     <>
