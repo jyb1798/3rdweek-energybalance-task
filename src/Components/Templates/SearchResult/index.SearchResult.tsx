@@ -27,31 +27,20 @@ const SearchResult = ({
   const [filteredData, setFilteredData] = useState<T.JsonDataType[]>([]);
 
   useEffect(() => {
-    selectedCategory === C.Category.all
-      ? setFilteredData(JsonData)
-      : setFilteredData([
-          ...JsonData.filter((el) => el.ingredient === selectedCategory),
-        ]);
-  }, [selectedCategory, JsonData]);
+    let newState = [...JsonData.filter((el) => el.productName.indexOf(searchInput) !== -1)];
 
-  useEffect(() => {
-    const newState = [...filteredData];
+    if(selectedCategory !== C.Category.all) 
+      newState = newState.filter((el) => el.ingredient === selectedCategory);
+
     selectedSort === C.sortMenu.highPopularity
-      ? newState.sort((a, b) => b.searchAmount - a.searchAmount)
-      : selectedSort === C.sortMenu.highPrice
-      ? newState.sort((a, b) => b.price - a.price)
-      : newState.sort((a, b) => a.price - b.price);
-    setFilteredData(newState);
-  }, [selectedSort]);
+    ? newState.sort((a, b) => b.searchAmount - a.searchAmount)
+    : selectedSort === C.sortMenu.highPrice
+    ? newState.sort((a, b) => b.price - a.price)
+    : newState.sort((a, b) => a.price - b.price);
 
-  useEffect(() => {
-    const newState = [
-      ...JsonData.filter((el) => el.productName.indexOf(searchInput) !== -1),
-    ];
-    selectedCategory === C.Category.all
-      ? setFilteredData(newState)
-      : setFilteredData(newState.filter((el) => el.ingredient === selectedCategory));
-  },[searchInput,selectedCategory]);
+    setFilteredData(newState)
+
+  },[searchInput,selectedCategory,selectedCategory,JsonData,selectedSort]);
 
   return (
     <>
