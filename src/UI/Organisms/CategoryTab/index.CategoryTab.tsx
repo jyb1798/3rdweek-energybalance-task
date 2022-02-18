@@ -16,14 +16,13 @@ const CategoryTab = ({
   setSelectedCategory,
   selectedSort,
   setSelectedSort,
-  JsonData
+  JsonData,
 }: CategoryTabProps) => {
   const [category, setCategory] = useState<string[]>();
 
   const HandleCategoryMenu = () => {
-
     const set = new Set();
-  
+
     set.add("전체");
     JsonData.map((item) => {
       item.ingredient.split(",").map((el) => set.add(el));
@@ -56,22 +55,22 @@ const CategoryTab = ({
   };
 
   return (
-    <S.Container
-      onMouseDown={onDragStart}
-      onMouseUp={onDragEnd}
-      onMouseMove={onDragMove}
-      onMouseLeave={onDragEnd}
-      ref={tabContainer}
-    >
-      <TabList
-        tabs={category as string[]}
-        selectedSort={selectedSort}
-        setSelectedSort={setSelectedSort}
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
-        component={"category"}
-      />
-    </S.Container>
+      <S.Container
+        onMouseDown={onDragStart}
+        onMouseUp={onDragEnd}
+        onMouseMove={onDragMove}
+        onMouseLeave={onDragEnd}
+        ref={tabContainer}
+      >
+        <TabList
+          tabs={category as string[]}
+          selectedSort={selectedSort}
+          setSelectedSort={setSelectedSort}
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+          component={"category"}
+        />
+      </S.Container>
   );
 };
 

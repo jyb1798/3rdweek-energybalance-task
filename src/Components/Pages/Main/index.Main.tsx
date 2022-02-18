@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Nav from "Templates/Nav/index.Nav";
 import SearchBar from "Templates/SearchBar/index.SearchBar";
-import styled from "styled-components";
 import { GlobalStyle } from "Style/style";
 import * as T from "Types/index";
+import * as S from "Pages/Main/style.Main";
 import SortTab from "Organisms/SortTab/index.SortTab";
 import CategoryTab from "Organisms/CategoryTab/index.CategoryTab";
 import SearchResult from "Components/Templates/SearchResult/index.SearchResult";
@@ -39,7 +39,7 @@ const Main = () => {
   }, [selectedSort]);
 
   return (
-    <Container>
+    <S.Container>
       <GlobalStyle />
       <Nav />
       <SearchBar
@@ -61,18 +61,8 @@ const Main = () => {
         setSelectedCategory={setSelectedCategory}
       />
       <SearchResult JsonData={JsonData} />
-    </Container>
+    </S.Container>
   );
 };
-
-const Container = styled.div`
-  width: 60vw;
-  margin: auto;
-
-  @media all and (max-width: 768px) {
-    width: 100vw;
-    margin: auto;
-  }
-`;
 
 export default Main;

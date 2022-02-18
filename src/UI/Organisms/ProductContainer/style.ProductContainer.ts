@@ -22,4 +22,9 @@ export const ContainerDiv = styled.div`
 export const ProductContainerDiv = styled.div`
   display: flex;
   width: inherit;
+
+  @media all and (max-width: 768px) {
+    width: 95%;
+    margin: auto;
+  }
 `;
