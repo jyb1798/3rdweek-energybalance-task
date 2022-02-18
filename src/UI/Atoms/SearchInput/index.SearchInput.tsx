@@ -8,9 +8,10 @@ interface SearchInputProps{
     setInputFocus: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const handleKeyPress = (e:React.KeyboardEvent<HTMLInputElement>, submitHandler:()=>void) => {
+const handleKeyPress = (e:React.KeyboardEvent<HTMLInputElement>, submitHandler:()=>void , setInputFocus:React.Dispatch<React.SetStateAction<boolean>>) => {
     if (e.key === 'Enter'){
         submitHandler();
+        setInputFocus(false);
     }
 }
 
@@ -19,7 +20,7 @@ const SearchInput = ({inputState, setInputState, submitHandler, setInputFocus}:S
         <Input 
             value = {inputState} 
             onChange = {(e: { target: { value: React.SetStateAction<string> } })=> setInputState(e.target.value)}
-            onKeyPress = {(e)=> {handleKeyPress(e, submitHandler)}}    
+            onKeyPress = {(e)=> {handleKeyPress(e, submitHandler,setInputFocus)}}    
             onFocus = {() => setInputFocus(true)}
             onBlur = {() => setInputFocus(false)}
         />
