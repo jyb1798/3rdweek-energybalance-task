@@ -5,7 +5,7 @@ import SearchBar from "Components/Templates/SearchBar/index.SearchBar";
 import styled from "styled-components";
 import { GlobalStyle } from "Style/style";
 import { JsonDataType } from "src/Types";
-import TabList from 'Molecules/TabList';
+import TabList from 'Molecules/TabList/index.TabList';
 const App = () => {
   const [JsonData, setJsonData] = useState<JsonDataType[]>([]);
   useEffect(() => {
@@ -27,7 +27,6 @@ const App = () => {
 };
 
 const Container = styled.div`
-
   width: 60vw;
   margin:auto;
   
