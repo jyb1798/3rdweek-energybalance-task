@@ -3,6 +3,7 @@ import ProductContainer from "Organisms/ProductContainer/index.ProductContainer"
 import RecommendWords from "./recommendWords";
 import * as S from "Templates/SearchResult/style.SeacthResult";
 import * as T from "Types/index";
+import * as C from "Const/index";
 import React, { useEffect, useState } from "react";
 import CategoryTab from "Organisms/CategoryTab/index.CategoryTab";
 import SortTab from "Organisms/SortTab/index.SortTab";
@@ -12,21 +13,17 @@ type SearchBarProps = {
   searchInput: string;
 };
 
-enum Category {
-  all = "전체",
-}
-
 const SearchResult = ({
   JsonData,
   searchInput,
 }: SearchBarProps): JSX.Element => {
   const [moreButtonCount, setMoreButtonCount] = useState<number>(1);
-  const [selectedCategory, setSelectedCategory] = useState<string>("전체");
-  const [selectedSort, setSelectedSort] = useState<string>("인기순");
+  const [selectedCategory, setSelectedCategory] = useState<string>(C.Category.all);
+  const [selectedSort, setSelectedSort] = useState<string>(C.sortMenu.highPopularity);
   const [filteredData, setFilteredData] = useState<T.JsonDataType[]>([]);
 
   useEffect(() => {
-    selectedCategory === Category.all
+    selectedCategory === C.Category.all
       ? setFilteredData(JsonData)
       : setFilteredData([
           ...JsonData.filter((el) => el.ingredient === selectedCategory),
@@ -35,9 +32,9 @@ const SearchResult = ({
 
   useEffect(() => {
     const newState = [...filteredData];
-    selectedSort === T.sortMenu.highPopularity
+    selectedSort === C.sortMenu.highPopularity
       ? newState.sort((a, b) => b.searchAmount - a.searchAmount)
-      : selectedSort === T.sortMenu.highPrice
+      : selectedSort === C.sortMenu.highPrice
       ? newState.sort((a, b) => b.price - a.price)
       : newState.sort((a, b) => a.price - b.price);
     setFilteredData(newState);

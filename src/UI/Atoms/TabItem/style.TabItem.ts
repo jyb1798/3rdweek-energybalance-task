@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import * as C from 'Const/index';
 
 export const Li = styled.li`
   min-width: fit-content;
@@ -27,7 +28,7 @@ export const Button = styled.button<{
       : "400"};
   @media all and (max-width: 768px) {
     border-bottom: ${(props) =>
-      props.component !== "category" ? null : 
+      props.component !== C.Category.category ? null : 
       props.itemName === props.selectedCategory
         ? "2px solid #f39519"
         : "1.5px solid #dae4e6"};
