@@ -20,7 +20,7 @@ const SortTab = ():JSX.Element => {
     <>
           <S.OrderCategoryLists onClick={moveToNewSort}>
             <S.ChangeSortButton>
-              <TabList tabs={sortMenu} onClick={checkActive}/>
+              <TabList tabs={sortMenu[0]} onClick={checkActive}/>
             </S.ChangeSortButton>
             <S.ChangeSortButton>
                <TabList tabs={sortMenu[1]} onClick={checkActive}/>
