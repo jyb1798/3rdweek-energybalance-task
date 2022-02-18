@@ -11,14 +11,12 @@ const ProductContainer = ({
   JsonData,
   moreButtonCount,
 }: ProductContainerProps): JSX.Element => {
-  const [productCount, setProductCount] = useState<number>();
   const [ProductList, setProductList] = useState<JsonDataType[]>();
   const [tmpJsonData, setTmpJsonData] = useState<JsonDataType[]>(
     JsonData.slice()
   );
   useEffect(() => {
-    if (tmpJsonData && !ProductList) {
-      setProductCount(1);
+    if (!ProductList) {
       if (tmpJsonData.length <= 4) {
         setProductList(tmpJsonData.splice(0));
         setTmpJsonData(tmpJsonData);
@@ -30,8 +28,6 @@ const ProductContainer = ({
         return;
       }
     }
-  }, []);
-  useEffect(() => {
     if (ProductList) {
       console.log(tmpJsonData);
       if (tmpJsonData.length <= 4) {
@@ -48,7 +44,12 @@ const ProductContainer = ({
       }
     }
   }, [moreButtonCount]);
-  console.log(ProductList);
+
+  useEffect(() => {
+    setProductList([]);
+    setTmpJsonData(JsonData.slice());
+  }, [JsonData]);
+
   return (
     <>
       <S.ContainerDiv>
