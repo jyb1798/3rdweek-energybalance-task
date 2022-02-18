@@ -55,18 +55,18 @@ const SearchResult = ({ JsonData }: SearchBarProps): JSX.Element => {
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
       />
-      {JsonData.length > 0 ? (
+      {filteredData.length > 0 ? (
         <S.SearchResultDiv>
           <S.ContainerWrapper>
             <>
               <ProductContainer
-                JsonData={filteredData}
+                filterdData={filteredData}
                 moreButtonCount={moreButtonCount}
               />
             </>
           </S.ContainerWrapper>
           <MoreButton
-            JsonData={filteredData}
+            filterdData={filteredData}
             moreButtonCount={moreButtonCount}
             setMoreButtonCount={setMoreButtonCount}
           />
