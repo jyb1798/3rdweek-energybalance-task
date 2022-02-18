@@ -20,7 +20,7 @@ export const MoreButtonContainer = styled.button<MoreButtonStyleType>`
   @media all and (min-width: 1023px) {
     width: 80%;
     max-width: 540px;
-    margin: auto 0;
+    margin: 30px auto;
   }
 
   @media all and (max-width: 768px) {
