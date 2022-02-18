@@ -1,8 +1,7 @@
 import React,{memo} from "react";
-import * as S from "./style.SortTab";
+import * as S from "Organisms/SortTab/style.SortTab";
+import * as T from "Types/index"
 import TabList from "Molecules/TabList/index.TabList";
-
-const sortMenu = ["인기순", "낮은 가격순", "높은 가격순"];
 
 interface SortTabProps {
   selectedSort: string;
@@ -21,7 +20,7 @@ const SortTab = ({
   return (
     <S.Container>
       <TabList
-        tabs={sortMenu}
+        tabs={Array.from(Object.values(T.sortMenu))}
         selectedSort={selectedSort}
         setSelectedSort={setSelectedSort}
         selectedCategory={selectedCategory}
