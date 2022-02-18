@@ -13,41 +13,27 @@ const ProductContainer = ({
 }: ProductContainerProps): JSX.Element => {
   const [ProductList, setProductList] = useState<JsonDataType[]>();
   const [tmpJsonData, setTmpJsonData] = useState<JsonDataType[]>(
-    JsonData.slice()
+    [...JsonData]
   );
+
   useEffect(() => {
-    if (!ProductList) {
-      if (tmpJsonData.length <= 4) {
-        setProductList(tmpJsonData.splice(0));
-        setTmpJsonData(tmpJsonData);
+    if(moreButtonCount === 1){
+      const newState = [...JsonData.slice(0, 4)]
+        setProductList(newState);
+        setTmpJsonData([...tmpJsonData]);
         return;
-      }
-      if (tmpJsonData.length > 4) {
-        setProductList(tmpJsonData.splice(0, 4));
-        setTmpJsonData(tmpJsonData);
-        return;
-      }
     }
     if (ProductList) {
-      console.log(tmpJsonData);
-      if (tmpJsonData.length <= 4) {
-        const newState = tmpJsonData.splice(0);
-        setProductList([...ProductList, ...newState]);
-        setTmpJsonData(tmpJsonData);
-        return;
-      }
-      if (tmpJsonData.length > 4) {
         const newState = tmpJsonData.splice(0, 4);
         setProductList([...ProductList, ...newState]);
-        setTmpJsonData(tmpJsonData);
+        setTmpJsonData([...tmpJsonData]);
         return;
-      }
     }
   }, [moreButtonCount]);
 
   useEffect(() => {
-    setProductList([]);
-    setTmpJsonData(JsonData.slice());
+    setProductList([...JsonData.slice(0,4)]);
+    setTmpJsonData([...JsonData]);
   }, [JsonData]);
 
   return (
