@@ -8,7 +8,7 @@ const SortTab = ():JSX.Element => {
   const [currentSort, setCurrentSort] = useState('id');
 
   
-  const checkActive = (sort): any => {
+  const checkActive = (sort) => {
     return sort === currentSort;
   };
 
@@ -20,7 +20,7 @@ const SortTab = ():JSX.Element => {
     <>
           <S.OrderCategoryLists onClick={moveToNewSort}>
             <S.ChangeSortButton>
-              <TabList tabs={sortMenu[0]} onClick={checkActive}/>
+              <TabList tabs={sortMenu} onClick={checkActive}/>
             </S.ChangeSortButton>
             <S.ChangeSortButton>
                <TabList tabs={sortMenu[1]} onClick={checkActive}/>
