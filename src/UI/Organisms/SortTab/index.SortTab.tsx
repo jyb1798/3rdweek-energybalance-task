@@ -1,36 +1,34 @@
 import React from "react";
-import * as S from "./style.SortTab"
+import * as S from "./style.SortTab";
 import TabList from "Molecules/TabList/index.TabList";
 
-const sortMenu = ["인기순","낮은 가격순","높은 가격순"]
+const sortMenu = ["인기순", "낮은 가격순", "높은 가격순"];
 
-const SortTab = ():JSX.Element => {
-  // const [currentSort, setCurrentSort] = useState('id');
+interface SortTabProps {
+  selectedSort: string;
+  setSelectedSort: React.Dispatch<React.SetStateAction<string>>;
+  selectedCategory: string;
+  setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
+}
 
-  
-  // const checkActive = (sort) => {
-  //   return sort === currentSort;
-  // };
+const SortTab = ({
+  selectedSort,
+  setSelectedSort,
+  selectedCategory,
+  setSelectedCategory
+}: SortTabProps): JSX.Element => {
 
-  // const moveToNewSort = event => {
-  //   setCurrentSort();
-  // };
-    
   return (
-    <>
-      {/* <TabList tabs={sortMenu} /> */}
-          {/* <S.OrderCategoryLists onClick={moveToNewSort}>
-            <S.ChangeSortButton>
-              <TabList tabs={sortMenu[0]} onClick={checkActive}/>
-            </S.ChangeSortButton>
-            <S.ChangeSortButton>
-               <TabList tabs={sortMenu[1]} onClick={checkActive}/>
-            </S.ChangeSortButton>
-            <S.ChangeSortButton >
-              <TabList tabs={sortMenu[1]} onClick={checkActive} />
-            </S.ChangeSortButton>
-          </S.OrderCategoryLists> */}
-    </>
+    <S.OrderCategoryLists>
+      <TabList
+        tabs={sortMenu}
+        selectedSort={selectedSort}
+        setSelectedSort={setSelectedSort}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+        component={"sort"}
+      />
+    </S.OrderCategoryLists>
   );
 };
 

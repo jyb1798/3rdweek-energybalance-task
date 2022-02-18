@@ -1,18 +1,20 @@
 import React, { useEffect, useState, useRef, forwardRef } from "react";
 import * as S from "Organisms/CategoryTab/style.CategoryTab";
-import * as T from "Types/index"
+import * as T from "Types/index";
 import TabList from "Molecules/TabList/index.TabList";
 import mockData from "./mockData";
 
 interface CategoryTabProps {
-  selectedCategory: string; 
+  selectedCategory: string;
   setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
+  selectedSort: string;
+  setSelectedSort: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const HandleCategoryMenu = () => {
   const set = new Set();
 
-  set.add("전체")
+  set.add("전체");
 
   mockData.results.map((item) => {
     item.ingredient.split(",").map((el) => set.add(el));
@@ -21,7 +23,12 @@ const HandleCategoryMenu = () => {
   return set;
 };
 
-const CategoryTab = ({selectedCategory,setSelectedCategory}:CategoryTabProps) => {
+const CategoryTab = ({
+  selectedCategory,
+  setSelectedCategory,
+  selectedSort,
+  setSelectedSort,
+}: CategoryTabProps) => {
   const [category, setCategory] = useState<string[]>();
 
   useEffect(() => {
@@ -54,9 +61,16 @@ const CategoryTab = ({selectedCategory,setSelectedCategory}:CategoryTabProps) =>
       onMouseUp={onDragEnd}
       onMouseMove={onDragMove}
       onMouseLeave={onDragEnd}
-      ref={tabContainer} 
+      ref={tabContainer}
     >
-      <TabList tabs={category as string[]} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
+      <TabList
+        tabs={category as string[]}
+        selectedSort={selectedSort}
+        setSelectedSort={setSelectedSort}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+        component={"category"}
+      />
     </S.Container>
   );
 };
