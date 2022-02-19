@@ -130,6 +130,13 @@ $ npm start
 
 ```
 
+## E2E Test(Cypress)
+
+![Animation](https://user-images.githubusercontent.com/84373490/154145888-57aa53c0-7b13-4c3f-845a-34d16af13348.gif)
+
+`cypress`를 통해 주요 로직을 테스트하였습니다.
+
+
 ## 프로젝트 후기
 
 🎈권영채 :
