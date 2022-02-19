@@ -31,8 +31,8 @@ const RecommendWords = ({
       });
       return (
         stringSimilarity.compareTwoStrings(
-          strArr.join("").trim(),
-          searchInput
+          strArr.join("").trim().toLowerCase(),
+          searchInput.toLowerCase()
         ) > 0.1
       );
     });
@@ -42,8 +42,8 @@ const RecommendWords = ({
     stringSimilarityList.push({
       name: ele.productName,
       similarity: stringSimilarity.compareTwoStrings(
-        ele.productName,
-        searchInput
+        ele.productName.toLowerCase(),
+        searchInput.toLowerCase()
       ),
     })
   );

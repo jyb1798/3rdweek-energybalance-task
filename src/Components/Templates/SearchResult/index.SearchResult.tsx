@@ -52,11 +52,11 @@ const SearchResult = ({
         });
 
         el.similarity = stringSimilarity.compareTwoStrings(
-          strArr.join("").trim(),
-          searchInput
+          strArr.join("").trim().toLowerCase(),
+          searchInput.toLowerCase()
         );
 
-        return strArr.join("").trim().indexOf(searchInput) !== -1;
+        return strArr.join("").trim().toLowerCase().indexOf(searchInput) !== -1;
       });
 
       //유사도에 맞춰 우선정렬
@@ -67,7 +67,7 @@ const SearchResult = ({
 
       newState =
         searchInput.trim().length !== 0
-          ? newState.filter((el) => el.productName.indexOf(searchInput) !== -1)
+          ? newState.filter((el) => el.productName.toLowerCase().indexOf(searchInput.toLowerCase()) !== -1)
           : newState;
     }
     
