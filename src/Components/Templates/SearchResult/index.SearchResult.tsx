@@ -39,9 +39,19 @@ const SearchResult = ({
         ? newState.filter((el) => el.ingredient === selectedCategory)
         : newState;
 
+    if(searchInput.trim().length === 0){
+      newState =
+      selectedSort === C.sortMenu.highPopularity
+    ? newState.sort((a, b) => b.searchAmount - a.searchAmount)
+    : selectedSort === C.sortMenu.highPrice
+    ? newState.sort((a, b) => b.price - a.price)
+    : newState.sort((a, b) => a.price - b.price);
+    setFilteredData(newState);
+    return;
+    }
+
     if (Hangul.isConsonantAll(searchInput)) {
       // 문자열이 초성만 포함할 경우
-
       newState = newState.filter((el) => {
 
         const strArr: string[] = [];
@@ -61,27 +71,22 @@ const SearchResult = ({
 
       //유사도에 맞춰 우선정렬
       newState = newState.sort((a, b) => b.similarity - a.similarity);
-
-    } else {
-      //문자열이 완벽한 문자열일 경우
-
-      newState =
-        searchInput.trim().length !== 0
-          ? newState.filter((el) => el.productName.toLowerCase().indexOf(searchInput.toLowerCase()) !== -1)
-          : newState;
-    }
-    
-    if(!Hangul.isConsonantAll(searchInput) || searchInput.trim().length === 0){
+      setFilteredData(newState);
+      return;
+    } 
+    //문자열이 완벽한 문자열일 경우
+    newState =
+      searchInput.trim().length !== 0
+        ? newState.filter((el) => el.productName.toLowerCase().indexOf(searchInput.toLowerCase()) !== -1)
+        : newState;
       newState =
       selectedSort === C.sortMenu.highPopularity
-    ? newState.sort((a, b) => b.searchAmount - a.searchAmount)
-    : selectedSort === C.sortMenu.highPrice
-    ? newState.sort((a, b) => b.price - a.price)
-    : newState.sort((a, b) => a.price - b.price);
-  }
-    
-    setFilteredData(newState);
-    
+      ? newState.sort((a, b) => b.searchAmount - a.searchAmount)
+      : selectedSort === C.sortMenu.highPrice
+      ? newState.sort((a, b) => b.price - a.price)
+      : newState.sort((a, b) => a.price - b.price);
+      setFilteredData(newState);
+      return; 
   }, [JsonData, selectedCategory, searchInput, selectedSort]);
 
   return (
