@@ -29,6 +29,7 @@ const SearchResult = ({
     C.sortMenu.highPopularity
   );
   const [filteredData, setFilteredData] = useState<T.JsonDataType[]>([]);
+  const [isConsonant, setIsConsonant] = useState<boolean>(false);
 
   useEffect(() => {
     let newState = [...JsonData];
@@ -39,11 +40,20 @@ const SearchResult = ({
         ? newState.filter((el) => el.ingredient === selectedCategory)
         : newState;
 
+    if (searchInput.trim().length === 0) {
+      newState =
+        selectedSort === C.sortMenu.highPopularity
+          ? newState.sort((a, b) => b.searchAmount - a.searchAmount)
+          : selectedSort === C.sortMenu.highPrice
+          ? newState.sort((a, b) => b.price - a.price)
+          : newState.sort((a, b) => a.price - b.price);
+      setFilteredData(newState);
+      return;
+    }
+
     if (Hangul.isConsonantAll(searchInput)) {
       // 문자열이 초성만 포함할 경우
-
       newState = newState.filter((el) => {
-
         const strArr: string[] = [];
         Hangul.disassemble(el.productName, true).map((itemArr) => {
           itemArr.map((item, index) => {
@@ -52,51 +62,62 @@ const SearchResult = ({
         });
 
         el.similarity = stringSimilarity.compareTwoStrings(
-          strArr.join("").trim(),
-          searchInput
+          strArr.join("").trim().toLowerCase(),
+          searchInput.toLowerCase()
         );
 
-        return strArr.join("").trim().indexOf(searchInput) !== -1;
+        return strArr.join("").trim().toLowerCase().indexOf(searchInput) !== -1;
       });
 
       //유사도에 맞춰 우선정렬
       newState = newState.sort((a, b) => b.similarity - a.similarity);
-
-    } else {
-      //문자열이 완벽한 문자열일 경우
-
-      newState =
-        searchInput.trim().length !== 0
-          ? newState.filter((el) => el.productName.indexOf(searchInput) !== -1)
-          : newState;
-
-      newState =
-        selectedSort === C.sortMenu.highPopularity
-          ? newState.sort((a, b) => b.searchAmount - a.searchAmount)
-          : selectedSort === C.sortMenu.highPrice
-          ? newState.sort((a, b) => b.price - a.price)
-          : newState.sort((a, b) => a.price - b.price);
+      searchInput.trim().length !== 0 && setIsConsonant(true)
+      setFilteredData(newState);
+      return;
     }
+    //문자열이 완벽한 문자열일 경우
+    newState =
+      searchInput.trim().length !== 0
+        ? newState.filter(
+            (el) =>
+              el.productName
+                .toLowerCase()
+                .indexOf(searchInput.toLowerCase()) !== -1
+          )
+        : newState;
+    newState =
+      selectedSort === C.sortMenu.highPopularity
+        ? newState.sort((a, b) => b.searchAmount - a.searchAmount)
+        : selectedSort === C.sortMenu.highPrice
+        ? newState.sort((a, b) => b.price - a.price)
+        : newState.sort((a, b) => a.price - b.price);
 
+    setIsConsonant(false);
     setFilteredData(newState);
-    
-  }, [JsonData, selectedCategory, searchInput, selectedSort]);
+    return;
+  }, [JsonData, selectedCategory, searchInput, selectedSort,isConsonant]);
 
   return (
     <>
-      <CategoryTab
-        JsonData={JsonData}
-        selectedSort={selectedSort}
-        setSelectedSort={setSelectedSort}
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
-      />
-      <SortTab
-        selectedSort={selectedSort}
-        setSelectedSort={setSelectedSort}
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
-      />
+      {isConsonant ? (
+        <S.Info>{C.Info.message}</S.Info>
+      ) : (
+        <>
+          <CategoryTab
+            JsonData={JsonData}
+            selectedSort={selectedSort}
+            setSelectedSort={setSelectedSort}
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+          />
+          <SortTab
+            selectedSort={selectedSort}
+            setSelectedSort={setSelectedSort}
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+          />
+        </>
+      )}
       {filteredData.length > 0 ? (
         <S.SearchResultDiv>
           <S.ContainerWrapper>
