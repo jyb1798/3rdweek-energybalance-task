@@ -5,26 +5,27 @@ import { JsonDataType } from "Types/index";
 interface MoreButtonProps {
   setMoreButtonCount: React.Dispatch<React.SetStateAction<number>>;
   moreButtonCount: number;
-  JsonData: JsonDataType[];
+  filteredData: JsonDataType[];
 }
 
 const MoreButton = ({
   moreButtonCount,
   setMoreButtonCount,
-  JsonData,
+  filteredData,
 }: MoreButtonProps) => {
   useEffect(() => {
     setMoreButtonCount(1);
-  }, [JsonData]);
+  }, [filteredData]);
   return (
     <S.MoreButtonContainer
+      disabled={moreButtonCount === Math.ceil(filteredData.length / 4)}
       count={moreButtonCount}
-      limit={Math.ceil(JsonData.length / 4)}
+      limit={Math.ceil(filteredData.length / 4)}
       onClick={() =>
         setMoreButtonCount((moreButtonCount) => moreButtonCount + 1)
       }
     >
-      제품 더보기( {moreButtonCount} / {Math.ceil(JsonData.length / 4)} ){" "}
+      제품 더보기( {moreButtonCount} / {Math.ceil(filteredData.length / 4)} ){" "}
     </S.MoreButtonContainer>
   );
 };

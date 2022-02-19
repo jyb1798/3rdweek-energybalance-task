@@ -4,37 +4,40 @@ import * as S from "Organisms/ProductContainer/style.ProductContainer";
 import ProductCard from "Molecules/ProductCard/index.ProductCard";
 
 type ProductContainerProps = {
-  JsonData: JsonDataType[];
+  filteredData: JsonDataType[];
   moreButtonCount: number;
 };
 const ProductContainer = ({
-  JsonData,
+  filteredData,
   moreButtonCount,
 }: ProductContainerProps): JSX.Element => {
   const [ProductList, setProductList] = useState<JsonDataType[]>();
-  const [tmpJsonData, setTmpJsonData] = useState<JsonDataType[]>(
-    [...JsonData]
-  );
+  const [tmpFilterdData, setTmpFilterdData] = useState<JsonDataType[]>([
+    ...filteredData,
+  ]);
 
   useEffect(() => {
-    if(moreButtonCount === 1){
-      const newState = [...JsonData.slice(0, 4)]
-        setProductList(newState);
-        setTmpJsonData([...tmpJsonData]);
-        return;
+    if (moreButtonCount === 1) {
+      const newState = [...filteredData.slice(0, 4)];
+      setProductList(newState);
+      setTmpFilterdData([...tmpFilterdData]);
+      return;
     }
     if (ProductList) {
-        const newState = tmpJsonData.splice(0, 4);
-        setProductList([...ProductList, ...newState]);
-        setTmpJsonData([...tmpJsonData]);
-        return;
+      if (moreButtonCount === 2) {
+        tmpFilterdData.splice(0, 4);
+      }
+      const newState = tmpFilterdData.splice(0, 4);
+      setProductList([...ProductList, ...newState]);
+      setTmpFilterdData([...tmpFilterdData]);
+      return;
     }
   }, [moreButtonCount]);
 
   useEffect(() => {
-    setProductList([...JsonData.slice(0,4)]);
-    setTmpJsonData([...JsonData]);
-  }, [JsonData]);
+    setProductList([...filteredData.slice(0, 4)]);
+    setTmpFilterdData([...filteredData]);
+  }, [filteredData]);
 
   return (
     <>

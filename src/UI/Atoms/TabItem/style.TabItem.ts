@@ -1,5 +1,11 @@
 import styled from "styled-components";
-
+import * as C from "Const/index";
+import {
+  SCREEN_MD_MAX,
+  SCREEN_LG_MAX,
+  SCREEN_MD_MIN,
+  SCREEN_LG_MIN,
+} from "Const/index";
 export const Li = styled.li`
   min-width: fit-content;
   padding: 0;
@@ -25,10 +31,11 @@ export const Button = styled.button<{
     props.itemName === props.selectedSort
       ? "600"
       : "400"};
-  @media all and (max-width: 768px) {
+  @media all and (max-width: ${SCREEN_MD_MIN}px) {
     border-bottom: ${(props) =>
-      props.component !== "category" ? null : 
-      props.itemName === props.selectedCategory
+      props.component !== C.Category.category
+        ? null
+        : props.itemName === props.selectedCategory
         ? "2px solid #f39519"
         : "1.5px solid #dae4e6"};
   }

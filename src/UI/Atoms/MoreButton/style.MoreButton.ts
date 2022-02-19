@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { SCREEN_MD_MAX, SCREEN_LG_MIN } from "Const/index";
 interface MoreButtonStyleType {
   count: number;
   limit: number;
@@ -16,14 +16,17 @@ export const MoreButtonContainer = styled.button<MoreButtonStyleType>`
   font-size: 16px;
   box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  pointer-events: ${(props) => (props.count === props.limit ? "none" : "auto")};
-  @media all and (min-width: 1023px) {
+  &:disabled {
+    background-color: #f2c58a;
+    cursor: not-allowed;
+  }
+  @media all and (min-width: ${SCREEN_LG_MIN}px) {
     width: 80%;
     max-width: 540px;
-    margin: auto 0;
+    margin: 30px auto;
   }
 
-  @media all and (max-width: 768px) {
+  @media all and (max-width: ${SCREEN_MD_MAX}px) {
     width: 95%;
     margin: auto;
     margin-bottom: 20px;
