@@ -1,4 +1,5 @@
 export interface JsonDataType {
+    similarity: number;
     brand: string,
     id: number,
     ingredient: string,
