@@ -4,6 +4,10 @@ export enum Category {
   sort = "sort",
 }
 
+export enum Info {
+  message = "초성검색을 하실경우에는 정렬조건을 변경하실수 없습니다. 유사도 우선으로 검색됩니다."
+}
+
 export enum sortMenu {
   highPopularity = "인기 순",
   highPrice = "높은가격 순",

@@ -15,3 +15,9 @@ export const ContainerWrapper = styled.div`
     margin-bottom: 115px;
   }
 `;
+
+export const Info = styled.div`
+padding: 10px 14px;
+text-align: center;
+font-weight: 600;
+`
