@@ -1,6 +1,6 @@
 # 3rdweek-energybalance-task
 
-## [Go Demo🚀](https://https://energybalancee.herokuapp.com/)
+## [Go Demo🚀](https://energybalancee.herokuapp.com/)
 
 ## Member
 
