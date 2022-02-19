@@ -120,7 +120,11 @@ $ npm start
    ├─Components
    │  ├─Pages
    │  │  └─Main
-   │  └─Templates
+   │  ├─Templates
+   │  ├─Nav
+   │  ├─SearchBar
+   │  └─SearchResult
+   ├─Const
    ├─Style
    ├─Types
    └─UI
@@ -132,7 +136,7 @@ $ npm start
 
 ## E2E Test(Cypress)
 
-![Animation](https://user-images.githubusercontent.com/84373490/154145888-57aa53c0-7b13-4c3f-845a-34d16af13348.gif)
+![Animation](https://youtu.be/Vs6AEZB69_c)
 
 `cypress`를 통해 주요 로직을 테스트하였습니다.
 
