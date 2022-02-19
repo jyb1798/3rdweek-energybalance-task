@@ -3,4 +3,6 @@ describe('start', () => {
       // Start from the index page
       cy.visit('/')
   })
+
+  
 })
