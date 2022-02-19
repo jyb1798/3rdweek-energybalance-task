@@ -69,15 +69,17 @@ const SearchResult = ({
         searchInput.trim().length !== 0
           ? newState.filter((el) => el.productName.indexOf(searchInput) !== -1)
           : newState;
-
-      newState =
-        selectedSort === C.sortMenu.highPopularity
-          ? newState.sort((a, b) => b.searchAmount - a.searchAmount)
-          : selectedSort === C.sortMenu.highPrice
-          ? newState.sort((a, b) => b.price - a.price)
-          : newState.sort((a, b) => a.price - b.price);
     }
-
+    
+    if(!Hangul.isConsonantAll(searchInput) || searchInput.trim().length === 0){
+      newState =
+      selectedSort === C.sortMenu.highPopularity
+    ? newState.sort((a, b) => b.searchAmount - a.searchAmount)
+    : selectedSort === C.sortMenu.highPrice
+    ? newState.sort((a, b) => b.price - a.price)
+    : newState.sort((a, b) => a.price - b.price);
+  }
+    
     setFilteredData(newState);
     
   }, [JsonData, selectedCategory, searchInput, selectedSort]);
