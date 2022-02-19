@@ -7,6 +7,8 @@ import * as C from "Const/index";
 import React, { useEffect, useState } from "react";
 import CategoryTab from "Organisms/CategoryTab/index.CategoryTab";
 import SortTab from "Organisms/SortTab/index.SortTab";
+import * as Hangul from "hangul-js";
+const stringSimilarity = require("string-similarity");
 
 type SearchBarProps = {
   JsonData: T.JsonDataType[];
@@ -31,27 +33,53 @@ const SearchResult = ({
   useEffect(() => {
     let newState = [...JsonData];
 
-    // 입력한 검색어에 맞게 필터링
-    newState =
-      searchInput.trim().length !== 0
-        ? newState.filter((el) => el.productName.indexOf(searchInput) !== -1)
-        : newState;
-
-    // 선택한 카테고리에 맞게 정렬
+    // 선택한 카테고리 필터링
     newState =
       selectedCategory !== C.Category.all
         ? newState.filter((el) => el.ingredient === selectedCategory)
         : newState;
 
-    // 선택한 정렬방식에 맞게 정렬
-    newState =
-      selectedSort === C.sortMenu.highPopularity
-        ? newState.sort((a, b) => b.searchAmount - a.searchAmount)
-        : selectedSort === C.sortMenu.highPrice
-        ? newState.sort((a, b) => b.price - a.price)
-        : newState.sort((a, b) => a.price - b.price);
+    if (Hangul.isConsonantAll(searchInput)) {
+      // 문자열이 초성만 포함할 경우
+
+      newState = newState.filter((el) => {
+
+        const strArr: string[] = [];
+        Hangul.disassemble(el.productName, true).map((itemArr) => {
+          itemArr.map((item, index) => {
+            index === 0 && strArr.push(item);
+          });
+        });
+
+        el.similarity = stringSimilarity.compareTwoStrings(
+          strArr.join("").trim(),
+          searchInput
+        );
+
+        return strArr.join("").trim().indexOf(searchInput) !== -1;
+      });
+
+      //유사도에 맞춰 우선정렬
+      newState = newState.sort((a, b) => b.similarity - a.similarity);
+
+    } else {
+      //문자열이 완벽한 문자열일 경우
+
+      newState =
+        searchInput.trim().length !== 0
+          ? newState.filter((el) => el.productName.indexOf(searchInput) !== -1)
+          : newState;
+
+      newState =
+        selectedSort === C.sortMenu.highPopularity
+          ? newState.sort((a, b) => b.searchAmount - a.searchAmount)
+          : selectedSort === C.sortMenu.highPrice
+          ? newState.sort((a, b) => b.price - a.price)
+          : newState.sort((a, b) => a.price - b.price);
+    }
 
     setFilteredData(newState);
+    
   }, [JsonData, selectedCategory, searchInput, selectedSort]);
 
   return (
