@@ -1,6 +1,7 @@
 import React from "react";
 import * as S from "./style.RecommendWords";
 import * as T from "src/Types/";
+import * as Hangul from "hangul-js";
 import { Category } from "Const/index";
 const stringSimilarity = require("string-similarity");
 
@@ -18,6 +19,25 @@ const RecommendWords = ({
   setSelectedCategory,
 }: RecommendWordProps): JSX.Element => {
   const stringSimilarityList: { name: string; similarity: number }[] = [];
+
+  if (Hangul.isConsonantAll(searchInput)) {
+    // 문자열이 초성만 포함할 경우
+    JsonData = JsonData.filter((el) => {
+      const strArr: string[] = [];
+      Hangul.disassemble(el.productName, true).map((itemArr) => {
+        itemArr.map((item, index) => {
+          index === 0 && strArr.push(item);
+        });
+      });
+      return (
+        stringSimilarity.compareTwoStrings(
+          strArr.join("").trim(),
+          searchInput
+        ) > 0.1
+      );
+    });
+  }
+
   JsonData.forEach((ele) =>
     stringSimilarityList.push({
       name: ele.productName,
