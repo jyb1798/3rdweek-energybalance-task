@@ -88,6 +88,7 @@ const SearchResult = ({
           searchInput={searchInput}
           JsonData={JsonData}
           setSearchInput={setSearchInput}
+          setSelectedCategory={setSelectedCategory}
         />
       )}
     </>
